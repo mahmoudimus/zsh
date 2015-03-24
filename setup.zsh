@@ -1,8 +1,13 @@
 #!/bin/zsh
 
 setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/dotfiles/zsh/z*; do
-    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+for rcfile in "${ZDOTDIR:-$HOME}"/dotfiles/files/zsh/z*; do
+    if [[ ! -s "${ZDOTDIR:-$HOME}/.${rcfile:t}" ]]; then
+	ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    fi
 done
 
-ln -s "${ZDOTDIR:-$HOME}"/dotfiles/zsh/prezto "${ZDOTDIR:-$HOME}/.zprezto"
+if [[ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]]; then
+    ln -s "${ZDOTDIR:-$HOME}"/dotfiles/files/zsh/prezto "${ZDOTDIR:-$HOME}/.zprezto"
+fi
+
