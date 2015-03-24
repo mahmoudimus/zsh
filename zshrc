@@ -19,9 +19,10 @@ path=(
     $path
 )
 
-source ~/.dotfiles/exports_bash.sh
-source ~/.dotfiles/funcs_bash.sh
-source ~/.dotfiles/aliases.sh
+source ~/.common_env/exports_bash.sh
+source ~/.common_env/funcs_bash.sh
+source ~/.common_env/aliases.sh
+source ~/.common_env/sourcer.sh
 source ~/.inputrc
 
 # Rbenv
