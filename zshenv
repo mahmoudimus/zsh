@@ -10,6 +10,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshenv" ]]; then
 fi
 
 fpath=(
-    "${ZDOTDIR:-$HOME}/dotfiles/zsh/ext/prompts/functions"
+    "${ZDOTDIR:-$HOME}/dotfiles/files/zsh/ext/prompts/functions"
     $fpath
 )
