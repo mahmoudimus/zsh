@@ -45,3 +45,10 @@ fi
 
 # added by travis gem
 [ -f /Users/mahmoud/.travis/travis.sh ] && source /Users/mahmoud/.travis/travis.sh
+
+# perl
+if [[ -r ~/perl5/perlbrew/etc/bashrc ]]; then
+    source ~/perl5/perlbrew/etc/bashrc
+else
+    echo "WARNING: Can't find perlbrew bashrc"
+fi
