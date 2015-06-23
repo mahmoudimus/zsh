@@ -20,9 +20,9 @@ cd zsh
 ./setup.zsh
 ```
 
-### update prezto
+### submodules?
 
-Got this trick from: http://scribu.net/blog/git-alias-for-updating-submodules.html
+I hate git submodules, but this is a pretty good use case for them. We don't want to modify the upstream source for easy forking and modification, so the pattern I decided to go with is defined below. I got this trick from: http://scribu.net/blog/git-alias-for-updating-submodules.html
 
 First, run this:
 
@@ -30,4 +30,10 @@ First, run this:
 git config --global alias.up-sub '!f() { cd $1 && git checkout master && git pull && git submodule update --init --recursive; }; f
 ```
 
-Second: `git up-sub prezto` from the `~/dotfiles/zsh/` directory.
+#### update zsh submodule
+
+- `git up-sub zsh` from the `~/dotfiles/` directory.
+
+#### update prezto submodule
+
+- `git up-sub prezto` from the `~/dotfiles/zsh/` directory.
