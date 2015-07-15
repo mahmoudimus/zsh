@@ -50,8 +50,6 @@ fi
 # perl
 if [[ -r ~/perl5/perlbrew/etc/bashrc ]]; then
     source ~/perl5/perlbrew/etc/bashrc
-else
-    echo "WARNING: Can't find perlbrew bashrc"
 fi
 
 source /Users/mahmoud/.iterm2_shell_integration.zsh
