@@ -35,7 +35,7 @@ fi
 
 # # Source virtual env wrapper
 export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
@@ -46,3 +46,5 @@ fi
 
 # added by travis gem
 [ -f /Users/mahmoud/.travis/travis.sh ] && source /Users/mahmoud/.travis/travis.sh
+
+source /Users/mahmoud/.iterm2_shell_integration.zsh
