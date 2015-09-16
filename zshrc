@@ -33,6 +33,11 @@ if [[ -d "/opt/chefdk/bin" ]]; then
     path=(/opt/chefdk/bin $path)
 fi
 
+# Check for Postgres.app then add to path
+if [[ -d "/Applications/Postgres.app/Contents/Versions/9.4/bin" ]]; then
+    path=(/Applications/Postgres.app/Contents/Versions/9.4/bin $path)
+fi
+
 # # Source virtual env wrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
@@ -51,5 +56,11 @@ fi
 if [[ -r ~/perl5/perlbrew/etc/bashrc ]]; then
     source ~/perl5/perlbrew/etc/bashrc
 fi
+
+if [[ -d ~/perl5/lib/perl5 ]]; then
+    # sets PERL_MM_OPT
+    eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
+fi
+
 
 source /Users/mahmoud/.iterm2_shell_integration.zsh
