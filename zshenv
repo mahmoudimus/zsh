@@ -13,3 +13,11 @@ fpath=(
     "${ZDOTDIR:-$HOME}/dotfiles/files/zsh/ext/prompts/functions"
     $fpath
 )
+
+# This is loaded *before* .zshrc is loaded
+source ~/.common_env/exports_bash.sh
+source ~/.common_env/funcs_bash.sh
+source ~/.common_env/aliases.sh
+
+source ~/.common_env/sourcer.sh
+source ~/.inputrc
