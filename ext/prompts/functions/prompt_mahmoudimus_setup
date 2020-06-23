@@ -33,9 +33,9 @@
 # Load dependencies.
 pmodload 'helper'
 
-function prompt_sorin_async_callback {
+function prompt_mahmoudimus_async_callback {
   case $1 in
-    prompt_sorin_async_git)
+    prompt_mahmoudimus_async_git)
       # We can safely split on ':' because it isn't allowed in ref names.
       IFS=':' read _git_target _git_post_target <<<"$3"
 
@@ -45,13 +45,13 @@ function prompt_sorin_async_callback {
 
       if [[ -z "$_git_target" ]]; then
         # No git target detected, flush the git fragment and redisplay the prompt.
-        if [[ -n "$_prompt_sorin_git" ]]; then
-          _prompt_sorin_git=''
+        if [[ -n "$_prompt_mahmoudimus_git" ]]; then
+          _prompt_mahmoudimus_git=''
           zle && zle reset-prompt
         fi
       else
         # Git target detected, update the git fragment and redisplay the prompt.
-        _prompt_sorin_git="${_git_target}${_git_post_target}"
+        _prompt_mahmoudimus_git="${_git_target}${_git_post_target}"
         zle && zle reset-prompt
       fi
       ;;
@@ -65,7 +65,7 @@ function prompt_sorin_async_callback {
   esac
 }
 
-function prompt_sorin_async_git {
+function prompt_mahmoudimus_async_git {
   cd -q "$1"
   if (( $+functions[git-info] )); then
     git-info
@@ -73,35 +73,35 @@ function prompt_sorin_async_git {
   fi
 }
 
-function prompt_sorin_async_tasks {
+function prompt_mahmoudimus_async_tasks {
   # Initialize async worker. This needs to be done here and not in
-  # prompt_sorin_setup so the git formatting can be overridden by other prompts.
+  # prompt_mahmoudimus_setup so the git formatting can be overridden by other prompts.
   if (( !${prompt_prezto_async_init:-0} )); then
-    async_start_worker prompt_sorin -n
-    async_register_callback prompt_sorin prompt_sorin_async_callback
+    async_start_worker prompt_mahmoudimus -n
+    async_register_callback prompt_mahmoudimus prompt_mahmoudimus_async_callback
     typeset -g prompt_prezto_async_init=1
   fi
 
   # Kill the old process of slow commands if it is still running.
-  async_flush_jobs prompt_sorin
+  async_flush_jobs prompt_mahmoudimus
 
   # Compute slow commands in the background.
-  async_job prompt_sorin prompt_sorin_async_git "$PWD"
+  async_job prompt_mahmoudimus prompt_mahmoudimus_async_git "$PWD"
 }
 
-function prompt_sorin_precmd {
+function prompt_mahmoudimus_precmd {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
 
   # Format PWD.
-  _prompt_sorin_pwd=$(prompt-pwd)
+  _prompt_mahmoudimus_pwd=$(prompt-pwd)
 
   # Handle updating git data. We also clear the git prompt data if we're in a
   # different git root now.
   if (( $+functions[git-dir] )); then
     local new_git_root="$(git-dir 2> /dev/null)"
     if [[ $new_git_root != $_sorin_cur_git_root ]]; then
-      _prompt_sorin_git=''
+      _prompt_mahmoudimus_git=''
       _sorin_cur_git_root=$new_git_root
     fi
   fi
@@ -121,11 +121,11 @@ function prompt_sorin_precmd {
     node-info
   fi
 
-  prompt_sorin_async_tasks
+  prompt_mahmoudimus_async_tasks
 }
 
 
-function prompt_sorin_setup {
+function prompt_mahmoudimus_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent sp subst)
@@ -135,7 +135,7 @@ function prompt_sorin_setup {
   autoload -Uz async && async
 
   # Add hook for calling git-info before each command.
-  add-zsh-hook precmd prompt_sorin_precmd
+  add-zsh-hook precmd prompt_mahmoudimus_precmd
 
   # Tell prezto we can manage this prompt
   zstyle ':prezto:module:prompt' managed 'yes'
@@ -183,25 +183,25 @@ function prompt_sorin_setup {
   # Get the async worker set up.
   _sorin_cur_git_root=''
 
-  _prompt_sorin_git=''
-  _prompt_sorin_pwd=''
+  _prompt_mahmoudimus_git=''
+  _prompt_mahmoudimus_pwd=''
 
   # Define prompts.
   # PROMPT='
   #%F{113}%n@%m:%D{%y/%m/%d,%H:%M}%f %F{208}λ%f %F{cyan}%~%f ${ruby_info[version]} ${node_info[version]} ${python_info[virtualenv]}
   #%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
-  PROMPT='${SSH_TTY:+"%F{9}%n%f%F{7}@%f%F{3}%m%f "}%F{4}${_prompt_sorin_pwd}%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
+  PROMPT='${SSH_TTY:+"%F{9}%n%f%F{7}@%f%F{3}%m%f "}%F{4}${_prompt_mahmoudimus_pwd}%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
   RPROMPT='${ruby_info[version]} ${node_info[version]}'
   RPROMPT+='$python_info[virtualenv]${editor_info[overwrite]}%(?:: %F{1}'
   RPROMPT+=${show_return}
   RPROMPT+='%f)${VIM:+" %B%F{6}V%f%b"}'
   RPROMPT+='${INSIDE_EMACS:+" %B%F{6}E%f%b"}%f'
-  RPROMPT+='${_prompt_sorin_git}'
+  RPROMPT+='${_prompt_mahmoudimus_git}'
   SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
 }
 
 
-function prompt_sorin_preview {
+function prompt_mahmoudimus_preview {
     local +h PROMPT=''
     local +h RPROMPT=''
     local +h SPROMPT=''
@@ -210,5 +210,5 @@ function prompt_sorin_preview {
     ?  prompt_preview_theme 'mahmoudimus'
 }
 
-prompt_sorin_setup "$@"
+prompt_mahmoudimus_setup "$@"
 # vim: ft=zsh
