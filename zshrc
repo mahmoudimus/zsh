@@ -46,3 +46,4 @@ source /Users/mahmoud/.iterm2_shell_integration.zsh
 source_if_exists "${HOME}/.fzf.zsh" || false
 # Force path array to have unique values
 typeset -aU path
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
