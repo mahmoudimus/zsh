@@ -12,7 +12,7 @@
 #
 # So, we move our file sourcers to zshrc instead.
 #
-
+set +x
 # Path
 # ----
 # # https://unix.stackexchange.com/a/62599/14442
@@ -26,36 +26,32 @@
 # Look into funcs_bash.sh to see bash compatible functions (pathappend, pathprepend)
 source ~/.common_env/exports_bash.sh
 source ~/.common_env/funcs_bash.sh
-source ~/.common_env/aliases.sh
-
-source ~/.common_env/sourcer.sh
-source ~/.inputrc
 
 # Source Prezto
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+source ~/.common_env/aliases.sh
+source ~/.common_env/sourcer.sh
+source ~/.inputrc
+
 if hash glocate > /dev/null; then
     alias locate="noglob glocate"
     [[ -f "$HOME/locatedb" ]] && export LOCATE_PATH="$HOME/locatedb"
 fi
 
-
-export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-
 source /Users/mahmoud/.iterm2_shell_integration.zsh
-# must be last file sourced
-source_if_exists "${HOME}/.fzf.zsh" || false
 # Force path array to have unique values
 typeset -aU path
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export HISTSIZE=10000000
 export SAVEHIST=10000000
+
 unalias gls
-alias gitls='git log --topo-order --stat --pretty=format:"${_git_log_medium_format}"'
+
+# must be last file sourced
+source_if_exists "${HOME}/.fzf.zsh" || false
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/mahmoud/.sdkman"
