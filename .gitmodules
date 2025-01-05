@@ -1,3 +1,6 @@
 [submodule "prezto"]
 	path = prezto
 	url = https://github.com/sorin-ionescu/prezto
+[submodule "zprezto-contrib/zsh-z"]
+	path = zprezto-contrib/zsh-z
+	url = https://github.com/agkozak/zsh-z.git
