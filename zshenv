@@ -37,8 +37,3 @@ source ~/.common_env/aliases.sh
 
 source ~/.common_env/sourcer.sh
 source ~/.inputrc
-export SDKROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
-if hash glocate > /dev/null; then
-    alias locate="noglob glocate"
-    [[ -f "$HOME/locatedb" ]] && export LOCATE_PATH="$HOME/locatedb"
-fi

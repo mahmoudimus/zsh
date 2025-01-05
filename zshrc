@@ -36,12 +36,6 @@ source ~/.common_env/aliases.sh
 source ~/.common_env/sourcer.sh
 source ~/.inputrc
 
-if hash glocate > /dev/null; then
-    alias locate="noglob glocate"
-    [[ -f "$HOME/locatedb" ]] && export LOCATE_PATH="$HOME/locatedb"
-fi
-
-source /Users/mahmoud/.iterm2_shell_integration.zsh
 # Force path array to have unique values
 typeset -aU path
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
