@@ -31,8 +31,6 @@ fpath=(
 # If foo already in $path, move to front: path[1,0]=~/foo
 #
 # Look into funcs_bash.sh to see bash compatible functions (pathappend, pathprepend)
-source ~/.common_env/exports_bash.sh
+# source ~/.common_env/exports_bash.sh
 source ~/.common_env/funcs_bash.sh
 source ~/.common_env/aliases.sh
-
-source ~/.common_env/sourcer.sh

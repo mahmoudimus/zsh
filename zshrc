@@ -12,6 +12,7 @@
 #
 # So, we move our file sourcers to zshrc instead.
 #
+#
 set +x
 # Path
 # ----
@@ -44,11 +45,4 @@ export SAVEHIST=10000000
 
 unalias gls
 
-# must be last file sourced
-source_if_exists "${HOME}/.fzf.zsh" || false
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/mahmoud/.sdkman"
-[[ -s "/Users/mahmoud/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/mahmoud/.sdkman/bin/sdkman-init.sh"
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+last_configs # from sourcer.sh
